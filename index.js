@@ -15,7 +15,7 @@ app.use(cors({
 }))
 
 app.get("/", function(req, res){
-    let sql = "SELECT * FROM  aws_Analysis";
+    let sql = "SELECT * FROM  today_real_analysis"; // Replace with your sql table name
     connection.query(sql, function(err, results){
         if (err) throw err;
     res.send(results);
@@ -28,8 +28,8 @@ app.get("/", function(req, res){
 
 
 app.get("/export", function(request, response, next){
-    connection.query('SELECT * FROM aws_Analysis', function(error, data){
-     const mysql_data = JSON.parse(JSON.stringify(data));
+    connection.query('SELECT * FROM today_real_analysis', function   (error, data){
+     const mysql_data = JSON.parse(JSON.stringify(data)); // Replace with your mysql table name
  
      const file_header = ['temperature', 'humidity', 'record_date'];
      const json_data = new data_exporter({file_header});
